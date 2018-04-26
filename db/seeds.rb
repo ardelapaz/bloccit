@@ -18,6 +18,7 @@ posts = Post.all
 end
 
 Post.find_or_create_by(title: "title", body: "body")
+Comment.find_or_create_by(post:Post.find_or_create_by(title: "title", body: "body"), body: "commentBody")
 
 puts "Seed finished"
 puts "#{Post.count} posts created"
