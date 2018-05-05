@@ -17,9 +17,19 @@ posts = Post.all
   )
 end
 
+# Create Questions
+100.times do
+  Question.create!(
+    title: RandomData.random_sentence,
+    body: RandomData.random_paragraph
+  )
+  end
+  questions = Question.all
+
 Post.find_or_create_by(title: "title", body: "body")
 Comment.find_or_create_by(post:Post.find_or_create_by(title: "title", body: "body"), body: "commentBody")
 
 puts "Seed finished"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
+puts "#{Question.count}" questions created"
