@@ -10,18 +10,18 @@
      </ul>
    </div>
    <div class="col-md-8">
-     <%= form_for [@sponsored_post.topic, @sponsored_post] do |f| %>
+     <%= form_for [@topic, @sponsored_post] do |f| %>
        <div class="form-group">
          <%= f.label :title %>
-         <%= f.text_field :title, class: 'form-control', placeholder: "Enter sponsored_post title" %>
+         <%= f.text_field :title, class: 'form-control', placeholder: "Enter the sponsored post's title" %>
        </div>
        <div class="form-group">
          <%= f.label :body %>
-         <%= f.text_area :body, rows: 8, class: 'form-control', placeholder: "Enter sponsored_post body" %>
+         <%= f.text_area :body, rows: 8, class: 'form-control', placeholder: "Enter the sponsored post's body" %>
        </div>
        <div class="form-group">
          <%= f.label :body %>
-         <%= f.number_field :body, rows: 8, class: 'form-control', placeholder: "Enter sponsored_post price" %>
+         <%= f.number_field :body, rows: 8, class: 'form-control', placeholder: "Enter the sponsored post's price" %>
        </div>
        <div class="form-group">
          <%= f.submit "Save", class: 'btn btn-success' %>
