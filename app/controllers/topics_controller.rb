@@ -38,8 +38,12 @@ class TopicsController < ApplicationController
        flash.now[:alert] = "Error saving topic. Please try again."
        render :edit
      end
-
     end
+
+    def edit
+      @topic = Topic.find(params[:id])
+    end
+
 
     def destroy
       @topic = Topic.find(params[:id])
