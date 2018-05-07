@@ -9,11 +9,12 @@ require 'random_data'
 end
 topics = Topic.all
 
-5.times do
+15.times do
   SponsoredPost.create!(
     topic: topics.sample,
     title: "This is a sponsored post!",
-    body: RandomData.random_paragraph
+    body: RandomData.random_paragraph,
+    price: 10
   )
   end
   sponsored_posts = SponsoredPost.all

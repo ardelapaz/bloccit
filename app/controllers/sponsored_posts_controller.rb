@@ -16,6 +16,7 @@ class SponsoredPostsController < ApplicationController
         @sponsored_post = SponsoredPost.new
         @sponsored_post.title = params[:sponsored_post][:title]
         @sponsored_post.body = params[:sponsored_post][:body]
+        @sponsored_post.price = params[:sponsored_post][:price]
         @topic = Topic.find(params[:topic_id])
         @sponsored_post.topic = @topic
         
@@ -32,6 +33,8 @@ class SponsoredPostsController < ApplicationController
         @sponsored_post = SponsoredPost.find(params[:id])
         @sponsored_post.title = params[:sponsored_post][:title]
         @sponsored_post.body = params[:sponsored_post][:body]
+        @sponsored_post.price = params[:sponsored_post][:price]
+
         
         if @sponsored_post.save
             flash[:notice] = "Post was saved."
@@ -43,7 +46,7 @@ class SponsoredPostsController < ApplicationController
     end
 
     def destroy
-        @sponsored_post = sponsored_post.find(params[:id])
+        @sponsored_post = SponsoredPost.find(params[:id])
 
         if @sponsored_post.destroy
             flash[:notice] = "\"#{@sponsored_post.title}\" was deleted successfully."

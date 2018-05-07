@@ -1,4 +1,4 @@
-<h1>New sponsored_post</h1>
+<h1>New Sponsored Post</h1>
  
  <div class="row">
    <div class="col-md-4">
@@ -10,7 +10,7 @@
      </ul>
    </div>
    <div class="col-md-8">
-     <%= form_for [@topic, @sponsored_post] do |f| %>
+     <%= form_for [@sponsored_post.topic, @sponsored_post] do |f| %>
        <div class="form-group">
          <%= f.label :title %>
          <%= f.text_field :title, class: 'form-control', placeholder: "Enter the sponsored post's title" %>
@@ -20,12 +20,12 @@
          <%= f.text_area :body, rows: 8, class: 'form-control', placeholder: "Enter the sponsored post's body" %>
        </div>
        <div class="form-group">
-         <%= f.label :body %>
-         <%= f.number_field :body, rows: 8, class: 'form-control', placeholder: "Enter the sponsored post's price" %>
+         <%= f.label :price %>
+         <%= f.number_field :price, rows: 8, class: 'form-control', placeholder: "Enter the sponsored post's price" %>
        </div>
        <div class="form-group">
          <%= f.submit "Save", class: 'btn btn-success' %>
-       </div>~
+       </div>
      <% end %>
    </div>
  </div>
