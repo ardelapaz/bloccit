@@ -3,7 +3,7 @@ before_save { self.email = email.downcase if email.present? }
 before_save :format_name 
 
 validates :name, length: { minimum: 1, maximum: 100 }, presence: true
-validates :password, presence: true, length: { minimum: 6 }, if: "password_digest.nil?"
+validates :password, presence: true, length: { minimum: 6 }, if: 'password_digest.nil?'
 validates :password, length: { minimum: 6 }, allow_blank: true
 validates :email,
             presence: true,
@@ -16,11 +16,8 @@ validates :email,
     def format_name
         if name
             name_array = []
-            name.split.each do |name_part|
-                name_array.push(name_part.capitalize)
-            end
+            name.split.each do { |name| name_array.push(name.capitalize) }
             self.name = name_array.join(" ")
         end
     end
-    private :format_name
 end
