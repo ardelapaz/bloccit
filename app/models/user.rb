@@ -1,5 +1,8 @@
 class User < ApplicationRecord
+    has_many :posts, dependent: :destroy
+
 before_save { self.email = email.downcase if email.present? }
+before_save { :format_name }
 #before_save :format_name 
 
 validates :name, length: { minimum: 1, maximum: 100 }, presence: true
