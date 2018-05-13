@@ -24,15 +24,15 @@ users = User.all
 end
 topics = Topic.all
 
-15.times do
-  SponsoredPost.create!(
-    topic: topics.sample,
-    title: "This is a sponsored post!",
-    body: RandomData.random_paragraph,
-    price: 10
-  )
-  end
-  sponsored_posts = SponsoredPost.all
+# 15.times do
+#   SponsoredPost.create!(
+#     topic: topics.sample,
+#     title: "This is a sponsored post!",
+#     body: RandomData.random_paragraph,
+#     price: 10
+#   )
+#   end
+#   sponsored_posts = SponsoredPost.all
 
 50.times do
   Post.create!(
@@ -53,21 +53,21 @@ posts = Post.all
 end
 
 # Create Questions
-100.times do
-  Question.create!(
-    title: RandomData.random_sentence,
-    body: RandomData.random_paragraph
-  )
-  end
-  questions = Question.all
+# 100.times do
+#   Question.create!(
+#     title: RandomData.random_sentence,
+#     body: RandomData.random_paragraph
+#   )
+#   end
+#   questions = Question.all
 
-Post.find_or_create_by(title: "title", body: "body")
-Comment.find_or_create_by(post:Post.find_or_create_by(title: "title", body: "body"), body: "commentBody")
+# Post.find_or_create_by(title: "title", body: "body")
+# Comment.find_or_create_by(post:Post.find_or_create_by(title: "title", body: "body"), body: "commentBody")
 
 puts "Seed finished"
 puts "#{User.count} users created"
 puts "#{Topic.count} topics created"
-puts "#{SponsoredPost.count} sponsored posts created"
+# puts "#{SponsoredPost.count} sponsored posts created"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
-puts "#{Question.count} questions created"
+# puts "#{Question.count} questions created"

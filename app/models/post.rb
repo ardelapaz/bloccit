@@ -1,7 +1,6 @@
 class Post < ApplicationRecord
     belongs_to :topic
     belongs_to :user
-
     has_many :comments, dependent: :destroy
 
     validates :title, length: { minimum: 5 }, presence: true
@@ -9,5 +8,6 @@ class Post < ApplicationRecord
     validates :topic, presence: true
 
     default_scope { order('created_at DESC') }
-
+    scope :ordered_by_title, -> { order('title DESC') }
+    scope :ordered_by_reverse_created_at, -> { order('created_at ASC') }
 end
