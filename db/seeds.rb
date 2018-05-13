@@ -1,10 +1,20 @@
 require 'random_data'
 # Create Users
-user = User.first
- user.update_attributes!(
-   email: 'ardelapaz@yahoo.com', # replace this with your personal email
-   password: 'password'
- )
+ # Create an admin user
+ admin = User.create!(
+  name:     'Admin User',
+  email:    'admin@example.com',
+  password: 'helloworld',
+  role:     'admin'
+)
+
+# Create a member
+member = User.create!(
+  name:     'Member User',
+  email:    'member@example.com',
+  password: 'helloworld'
+)
+
 5.times do
   User.create!(
 # #3
