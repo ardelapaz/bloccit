@@ -25,6 +25,10 @@ RSpec.describe User, type: :model do
       expect(user).to respond_to(:role)
     end
 
+    it "responds to moderator?" do
+      expect(user).to respond_to(:moderator?)
+  end
+
     it "responds to admin?" do
       expect(user).to respond_to(:admin?)
     end
@@ -42,6 +46,10 @@ RSpec.describe User, type: :model do
     context "member user" do
       it "returns true for #member?" do
         expect(user.member?).to be_truthy
+      end
+
+      it "returns true for #moderator?" do
+        expect(user.moderator?).to be_falsey
       end
 
       it "returns false for #admin?" do
@@ -62,12 +70,29 @@ RSpec.describe User, type: :model do
         expect(user.admin?).to be_truthy
       end
     end
+
+  context "mod user" do
+    before do
+      user.moderator!
+    end
+
+    it "returns false for #member?" do
+      expect(user.member?).to be_falsey
+    end
+
+    it "returns true for #moderator?" do
+      expect(user.moderator?).to be_truthy
+    end
+
+    it "returns false for #admin?" do
+      expect(user.admin?).to be_falsey
+    end
   end
+end
 
     it "should have name and email attributes" do
       expect(user).to have_attributes(name: "Bloccit User", email: "user@bloccit.com")
     end
-  end
   
   describe "invalid user" do
     let(:user_with_invalid_name) { User.new(name: "", email: "user@bloccit.com") }
@@ -79,11 +104,6 @@ RSpec.describe User, type: :model do
 
     it "should be an invalid user due to blank email" do
       expect(user_with_invalid_email).to_not be_valid
-    end
-    it "should format the user's name" do
-      user.name = "default name"
-      user.save
-      expect(user.name).to eq "Default Name"
     end
   end
 end
