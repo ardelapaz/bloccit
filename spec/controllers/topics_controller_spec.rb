@@ -203,7 +203,6 @@ RSpec.describe TopicsController, type: :controller do
         expect(response).to redirect_to(topics_path)
       end
     end
-  end
 
     describe "GET edit" do
       it "returns http success" do
