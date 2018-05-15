@@ -5,6 +5,8 @@ RSpec.describe User, type: :model do
 
   it { is_expected.to have_many(:posts) }
   it { is_expected.to have_many(:comments) }
+  it { is_expected.to have_many(:votes) }
+
 
 
   # Shoulda tests for name
@@ -33,6 +35,23 @@ RSpec.describe User, type: :model do
 
     it "responds to member?" do
       expect(user).to respond_to(:member?)
+    end
+
+    it "should have name and email attributes" do
+      expect(user).to have_attributes(name: "Bloccit User", email: "user@bloccit.com")
+    end
+  end
+
+  describe "invalid user" do
+    let(:user_with_invalid_name) { User.new(name: "", email: "user@bloccit.com") }
+    let(:user_with_invalid_email) { User.new(name: "Bloccit User", email: "") }
+
+    it "should be an invalid user due to blank name" do
+      expect(user_with_invalid_name).to_not be_valid
+    end
+
+    it "should be an invalid user due to blank email" do
+      expect(user_with_invalid_email).to_not be_valid
     end
   end
 
@@ -63,29 +82,6 @@ RSpec.describe User, type: :model do
       it "returns true for #admin?" do
         expect(user.admin?).to be_truthy
       end
-    end
-  end
-
-    it "should have name and email attributes" do
-      expect(user).to have_attributes(name: "Bloccit User", email: "user@bloccit.com")
-    end
-  end
-  
-  describe "invalid user" do
-    let(:user_with_invalid_name) { User.new(name: "", email: "user@bloccit.com") }
-    let(:user_with_invalid_email) { User.new(name: "Bloccit User", email: "") }
-
-    it "should be an invalid user due to blank name" do
-      expect(user_with_invalid_name).to_not be_valid
-    end
-
-    it "should be an invalid user due to blank email" do
-      expect(user_with_invalid_email).to_not be_valid
-    end
-    it "should format the user's name" do
-      user.name = "default name"
-      user.save
-      expect(user.name).to eq "Default Name"
     end
   end
 end

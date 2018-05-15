@@ -63,17 +63,10 @@ class PostsController < ApplicationController
   end
 
   def authorize_user
-    post = Post.find(params[:id])
-    if :delete
-      unless current_user == post.user || current_user.admin?
-        flash[:alert] = "You must be an admin to do that."
-        redirect_to [post.topic, post]
-      end
-    else
-      unless current_user == post.user || current_user.admin? || current_user.moderator?
-        flash[:alert] = "You must be a higher rank to do that."
-        redirect_to [post.topic, post]
-      end
+  post = Post.find(params[:id])
+    unless current_user == post.user || current_user.admin?
+      flash[:alert] = "You must be an admin to do that."
+      redirect_to [post.topic, post]
     end
   end
 end
