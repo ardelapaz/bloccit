@@ -10,6 +10,7 @@ class Post < ApplicationRecord
     validates :topic, presence: true
     validates :user, presence: true
 
+
     # default_scope { order('created_at DESC') }
     default_scope { order('rank DESC') }
 
