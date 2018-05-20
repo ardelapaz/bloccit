@@ -49,5 +49,6 @@ source 'https://rubygems.org'
  end
 
   gem 'bootstrap-sass'
-  gem 'bcrypt'
+  gem 'bcrypt', git: 'https://github.com/codahale/bcrypt-ruby.git', :require => 'bcrypt'
+  gem 'figaro', '1.0'
   

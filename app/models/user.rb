@@ -2,6 +2,7 @@ class User < ApplicationRecord
     has_many :posts, dependent: :destroy
     has_many :comments, dependent: :destroy
     has_many :votes, dependent: :destroy
+    has_many :favorites, dependent: :destroy
 
 
 before_save { self.email = email.downcase if email.present? }
@@ -22,15 +23,19 @@ validates :email,
    enum role: [:member, :admin]
 
 
+def favorite_for(post)
+    favorites.where(post_id: post.id).first
+
+end
 private
-    def format_name
-        if name
-            name_array = []
-            name.split.each do |name|
-                name_array.push(name.capitalize)
+
+def format_name
+    if name
+        name_array = []
+        name.split.each do |name|
+            name_array.push(name.capitalize)
             end
-            self.name = name_array.join(" ")
+        self.name = name_array.join(" ")
         end
     end
-    
 end
