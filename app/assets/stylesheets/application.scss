@@ -15,3 +15,12 @@
  */
  @import "bootstrap-sprockets";
  @import "bootstrap";
+
+ div.pull-right {
+     display: flex;
+     flex-direction: column;
+ }
+ 
+ li.pull-right {
+     padding: 4px
+ }
