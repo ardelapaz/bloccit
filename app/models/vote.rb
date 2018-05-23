@@ -11,3 +11,4 @@ class Vote < ApplicationRecord
      post.update_rank
    end
 end
+ 

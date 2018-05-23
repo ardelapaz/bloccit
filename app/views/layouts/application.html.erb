@@ -24,7 +24,8 @@
             <li class="pull-right"><%= link_to "Sign In", new_session_path %></li>
             <li class="pull-right"><%= link_to "Sign Up", new_user_path %></li>
           <% end %>
-        <% if flash[:notice] %>
+     </ul>
+     <% if flash[:notice] %>
          <div class="alert alert-success">
            <button type="button" class="close" data-dismiss="alert">&times;</button>
            <%= flash[:notice] %>
@@ -35,7 +36,6 @@
            <%= flash[:alert] %>
          </div>
        <% end %>
-     </ul>
     <%= yield %>
     </div>
   </body>
