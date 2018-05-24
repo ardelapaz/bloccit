@@ -2,7 +2,7 @@
    <div class="col-md-8">
      <div class="media">
        <br />
-       <% avatar_url = @user.avatar_url(128) %>
+       <% avatar_url = @user.avatar_url(current_user) %>
        <% if avatar_url %>
          <div class="media-left">
            <%= image_tag avatar_url, class: 'media-object' %>
@@ -20,22 +20,30 @@
          <p> <%= current_user.name %> has not submitted any posts yet.</p>
          </small>
          <% end %>
+         </div>
           <% if user_has_favorites(current_user) %>
-            <% @user.posts.favorites.each do |post, topic| %>
+          <div class="media">
+          <h2 class="media-heading">List of Favorites</h2>
+          <ul class "list-group">
+            <% @user.favorites.each do |favorite| %>
+            <li class="list-group-item">
             <div class="media">
-              <%= render partial: 'votes/voting', locals: { post: post } %>
+            <%= image_tag avatar_url(favorite.user), class: 'media-object' %>
+              <%= render partial: 'votes/voting', locals: { post: favorite.post } %>
                 <div class="media-body">
                     <h4 class="media-heading">
-                      <%= link_to post.title, topic_post_path(topic, post) %>
+                      <%= link_to favorite.post.title, topic_post_path(favorite.post.topic, favorite.post) %>
                     </h4>
                   <small>
-                    submitted <%= time_ago_in_words(post.created_at) %> ago by <%= post.user.name %> <br>
+                    <%= favorite.post.comments.count %> comments <br>
                   </small>
                 </div>
               </div>
+              </li>
             <% end %>
+            </ul>
             <% end %>
-       </div>
+            </div>
      </div>
    </div>
  </div>
